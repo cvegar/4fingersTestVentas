@@ -40,12 +40,6 @@
     [VeridiumSDK.sharedSDK register4FUIExporter];
     [VeridiumSDK.sharedSDK register4FUIAuthenticator];
     
-
-    NSString *ver1 = VeridiumSDK.sdkVersion;
-    NSString *ver2 = VeridiumSDK.sharedSDK.lib4FVersion;
-    NSLog(@"VeridiumSDK: %@", ver1);
-    NSLog(@"Veridium4FSDK: %@", ver2);
-    
     return;
 }
 
@@ -91,7 +85,7 @@ Boolean *livenessValue;
     [configVeridium setPack_png:NO];
     [configVeridium setUseLiveness:YES];
     [configVeridium setLiveness_factor:99];
-   // [configVeridium setActive_liveness_beta:*livenessValue];
+    [configVeridium setActive_liveness_beta:*livenessValue];
     [configVeridium setTargetIndexFinger:NO];
     [configVeridium setTargetLittleFinger:NO];
     [configVeridium setPack_audit_image:YES];
@@ -102,7 +96,7 @@ Boolean *livenessValue;
     [configVeridium setDo_debug:NO];
     configVeridium.do_export = YES;
     
-    [configVeridium configureTimeoutEnabled:YES withTimeoutCanRestart:YES andTimoutSeconds:45 andAllowedRetries:3];
+    [configVeridium configureTimeoutEnabled:YES withTimeoutCanRestart:YES andTimoutSeconds:60 andAllowedRetries:infinite];
     
     [VeridiumBiometricsFourFService exportTemplate:configVeridium onSuccess:^(NSData * _Nonnull data) {
         NSError *e = nil;
@@ -130,3 +124,4 @@ Boolean *livenessValue;
 }
 
 @end
+
